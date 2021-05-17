@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loginController">
+   <left>
+      <AnchorPane prefHeight="407.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="brandingImageView" fitHeight="182.0" fitWidth="229.0" layoutX="25.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/SnailSol2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="370.0" style="-fx-background-color: #ECECE7;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="loginImageView" fitHeight="59.0" fitWidth="67.0" layoutX="121.0" layoutY="28.0" pickOnBounds="true" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="28.0">
+               <image>
+                  <Image url="@../../Images/login.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="48.0" layoutY="131.0" text="Gebruikersnaam: ">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameTextfield" layoutX="148.0" layoutY="128.0" prefHeight="26.0" prefWidth="173.0" promptText="Gebruikersnaam" />
+            <Label layoutX="48.0" layoutY="170.0" text="Wachtwoord:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="enterPasswordField" layoutX="148.0" layoutY="167.0" prefHeight="26.0" prefWidth="173.0" promptText="Wachtwoord" />
+            <Button fx:id="loginKnop" layoutX="76.0" layoutY="256.0" mnemonicParsing="false" onAction="#loginKnopOnAction" prefHeight="32.0" prefWidth="225.0" style="-fx-background-color: #BA3131;" text="Login" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="loginTerugKnop" layoutX="76.0" layoutY="312.0" mnemonicParsing="false" onAction="#loginTerugKnopOnAction" prefHeight="32.0" prefWidth="225.0" style="-fx-background-color: #BA3131;" text="Terug" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Label fx:id="loginMsgLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="209.0" prefHeight="19.0" prefWidth="335.0" textFill="RED" />
+            <Label fx:id="loginRegisterKnop" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="155.0" layoutY="365.0" prefHeight="19.0" prefWidth="160.0" text="Maak een account aan." textAlignment="RIGHT" textFill="#007bff" underline="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
