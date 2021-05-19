@@ -3,14 +3,15 @@ package sample;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.net.URL;
@@ -41,6 +42,8 @@ public class registerController implements Initializable {
     private TextField registerAchternaam;
     @FXML
     private TextField registerUsername;
+    @FXML
+    private Hyperlink registerLoginKnop;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -50,23 +53,33 @@ public class registerController implements Initializable {
 
     }
 
-    public void registerKnopOnAction(ActionEvent event){
+    public void registerKnopOnAction(ActionEvent event) {
 
-        if (registerSetPassword.getText().equals(registerConfirmPassword.getText())) {
+        if (!registerSetPassword.getText().equals("") && !registerConfirmPassword.getText().equals("") && !registerUsername.getText().equals("") && !registerAchternaam.getText().equals("") && !registerVoornaam.getText().equals("") && (registerSetPassword.getText().equals(registerConfirmPassword.getText()))) {
+            //(registerSetPassword.getText().equals(registerConfirmPassword.getText()))
             registerUser();
             confirmPasswordLabel.setText("");
-
-        } else {
-            confirmPasswordLabel.setText("Wachtwoorden komen niet overeen!");
+            registerMsgLabel.setText("Lijkt goed te gaan");
         }
 
-        registerUser();
+        if (registerSetPassword.getText().equals("") || registerConfirmPassword.getText().equals("") || registerUsername.getText().equals("") || registerAchternaam.getText().equals("") || registerVoornaam.getText().equals("")) {
+            registerMsgLabel.setText("Vul de verplichte velden in aub.");
+        } if (!registerSetPassword.getText().equals(registerConfirmPassword.getText())) {
+            confirmPasswordLabel.setText("Wachtwoorden komen niet overeen!");
+        }
     }
+
 
     public void registerTerugKnopOnAction(ActionEvent event){
         Stage stage = (Stage) registerTerugKnop.getScene().getWindow();
         stage.close();
         Platform.exit();
+    }
+
+    public void registerLoginKnopOnAction(ActionEvent event){
+        Stage stage = (Stage) registerLoginKnop.getScene().getWindow();
+        stage.close();
+        loginAccountForm();
     }
 
     public void registerUser(){
@@ -78,7 +91,7 @@ public class registerController implements Initializable {
         String gebruikersnaam = registerUsername.getText();
         String password = registerSetPassword.getText();
 
-        String insertFields = "INSERT INTO account(voornaam, achternaam, username, password) VALUES ('";
+        String insertFields = "INSERT INTO account(firstname, surname, username, password) VALUES ('";
         String insertValues = voornaam + "','" + achternaam + "','" + gebruikersnaam + "','" + password + "')";
         String insertToRegister = insertFields + insertValues;
 
@@ -93,6 +106,21 @@ public class registerController implements Initializable {
             e.getCause();
         }
 
+    }
+
+    public void loginAccountForm(){
+        try{
+
+            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+            Stage LoginStage = new Stage();
+            LoginStage.initStyle(StageStyle.UNDECORATED);
+            LoginStage.setScene(new Scene(root, 600, 420));
+            LoginStage.show();
+
+        } catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
 }

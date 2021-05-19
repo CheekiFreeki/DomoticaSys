@@ -7,7 +7,7 @@ public class databaseConnection {
     public Connection databaseLink;
 
     public Connection getConnection(){
-        String databaseName = "snailsolutions";
+        String databaseName = "snailsol";
         String databaseUser = "root";
         String databasePassword = "";
         String url = "jdbc:mysql://localhost/" + databaseName;
