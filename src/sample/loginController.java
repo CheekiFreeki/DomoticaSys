@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -67,27 +66,49 @@ public class loginController implements Initializable {
     }
 
     public void validateLogin(){
-        databaseConnection connectNow = new databaseConnection();
-        Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT count(1) FROM account WHERE username = '" + usernameTextfield.getText() + "' AND password = '" + enterPasswordField.getText() + "'";
+        String hashedPassword = Account.hashPassword(enterPasswordField.getText());
         try {
 
-            Statement statement = connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
-
-            while(queryResult.next()){
-                if (queryResult.getInt(1) == 1) {
+            if (Database.checkPassword(usernameTextfield.getText(), hashedPassword)) {
                     //loginMsgLabel.setText("Gelukt");
-                    createAccountForm();
-                } else {
+                // open home pagina
+                createAccountForm();
+
+                Account account = new Account(usernameTextfield.getText());
+
+                String rpi = Database.getRpiIp(account.getUsername()),
+                        arduino = Database.getArduino(account.getUsername()),
+                        maxTemp = Database.getTemp(account.getUsername()),
+                        minLight = Database.getLight(account.getUsername());
+                if(rpi!=null)
+                {
+                    account.setRpi(new RaspberryPi(rpi));
+                    //gui.updateTemp();
+                }
+                if(arduino!=null)
+                {
+                    Thread.sleep(1000);
+                    account.setMyArduino(new MyArduino());
+                    MyArduino.setArduinoCon(arduino);
+                    //gui.updateLight();
+                }
+                if(maxTemp!=null)
+                {
+                    Main.maxTemp=Integer.parseInt(maxTemp);
+                }
+                if(minLight!=null)
+                {
+                    Main.minLight = Integer.parseInt(minLight);
+                }
+
+            } else {
                     loginMsgLabel.setText("Helaas niet gelukt");
                 }
-            }
-
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
+            loginMsgLabel.setText("Helaas niet gelukt");
         }
 
     }

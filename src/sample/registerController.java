@@ -15,9 +15,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.Statement;
-import java.sql.*;
 import java.util.ResourceBundle;
 
 
@@ -59,8 +57,6 @@ public class registerController implements Initializable {
         } else {
             confirmPasswordLabel.setText("Wachtwoorden komen niet overeen!");
         }
-
-        registerUser();
     }
 
     public void registerTerugKnopOnAction(ActionEvent event){
@@ -70,29 +66,22 @@ public class registerController implements Initializable {
     }
 
     public void registerUser(){
-        databaseConnection connectNow = new databaseConnection();
-        Connection connectDb = connectNow.getConnection();
-
         String voornaam = registerVoornaam.getText();
         String achternaam = registerAchternaam.getText();
         String gebruikersnaam = registerUsername.getText();
         String password = registerSetPassword.getText();
 
-        String insertFields = "INSERT INTO account(voornaam, achternaam, username, password) VALUES ('";
-        String insertValues = voornaam + "','" + achternaam + "','" + gebruikersnaam + "','" + password + "')";
-        String insertToRegister = insertFields + insertValues;
-
         try{
-            Statement statement = connectDb.createStatement();
-            statement.executeUpdate(insertToRegister);
-
             registerMsgLabel.setText("Succesvolle registratie");
+
+            Account account = Account.signUp(gebruikersnaam, Account.hashPassword(password), voornaam, achternaam);
+
+
+            //gebruiker is ingelogd en moet nu naar hoofdscherm.
 
         } catch(Exception e) {
             e.printStackTrace();
             e.getCause();
         }
-
     }
-
 }

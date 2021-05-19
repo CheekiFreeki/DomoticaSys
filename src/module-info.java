@@ -5,6 +5,8 @@ module DomoticaSys {
     requires javafx.controls;
     requires java.sql;
     requires mysql.connector.java;
+    requires java.json;
+    requires arduino;
 
     opens sample;
 }

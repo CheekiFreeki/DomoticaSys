@@ -53,6 +53,11 @@
                </font>
             </Button>
             <Label fx:id="loginMsgLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="209.0" prefHeight="19.0" prefWidth="335.0" textFill="RED" />
+            <Label fx:id="loginRegisterKnop" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="155.0" layoutY="365.0" prefHeight="19.0" prefWidth="160.0" text="Maak een account aan." textAlignment="RIGHT" textFill="#007bff" underline="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </right>
