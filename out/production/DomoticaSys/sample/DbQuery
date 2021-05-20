@@ -1,0 +1,13 @@
+CREATE DATABASE IF NOT EXISTS `SnailSol`;
+CREATE TABLE IF NOT EXISTS `snailsol`.`account` ( `idAccount` INT NOT NULL AUTO_INCREMENT , `username` VARCHAR(45) NOT NULL , `password` CHAR(100) NOT NULL , `light_pref` INT NOT NULL , `temp_pref` INT NOT NULL , PRIMARY KEY (`idAccount`), UNIQUE `username` (`username`)) ENGINE = InnoDB;
+ALTER TABLE `account` ADD `firstname` VARCHAR(45) NOT NULL AFTER `idAccount`, ADD `surname` VARCHAR(45) NOT NULL AFTER `firstname`;
+CREATE TABLE IF NOT EXISTS `snailsol`.`playlist` ( `idPlaylist` INT NOT NULL , `name` VARCHAR(45) NOT NULL , `idAccount` INT(11) NOT NULL , PRIMARY KEY (`idPlaylist`), INDEX (`idAccount`)) ENGINE = InnoDB;
+ALTER TABLE `playlist` ADD FOREIGN KEY (`idAccount`) REFERENCES `account`(`idAccount`) ON DELETE RESTRICT ON UPDATE CASCADE;
+CREATE TABLE IF NOT EXISTS `snailsol`.`sensor` ( `idSensor` INT NOT NULL AUTO_INCREMENT , PRIMARY KEY (`idSensor`)) ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `snailsol`.`sensor_log` ( `idSensor_Log` INT NOT NULL AUTO_INCREMENT , `idSensor` INT NOT NULL , `reading` VARCHAR(45) NOT NULL , `time` DATETIME NOT NULL , PRIMARY KEY (`idSensor_Log`), INDEX (`idSensor`)) ENGINE = InnoDB;
+ALTER TABLE `sensor_log` ADD FOREIGN KEY (`idSensor`) REFERENCES `sensor`(`idSensor`) ON DELETE RESTRICT ON UPDATE CASCADE;
+CREATE TABLE IF NOT EXISTS `snailsol`.`song` ( `idSong` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `artist` VARCHAR(255) NOT NULL , PRIMARY KEY (`idSong`)) ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `snailsol`.`playlist_contains` ( `idSong` INT NOT NULL , `idPlaylist` INT NOT NULL , PRIMARY KEY (`idSong`, `idPlaylist`)) ENGINE = InnoDB;
+ALTER TABLE `playlist_contains` ADD FOREIGN KEY (`idPlaylist`) REFERENCES `playlist`(`idPlaylist`) ON DELETE RESTRICT ON UPDATE CASCADE; ALTER TABLE `playlist_contains` ADD FOREIGN KEY (`idSong`) REFERENCES `song`(`idSong`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `account` CHANGE `light_pref` `light_pref` INT(11) NULL;
+ALTER TABLE `account` CHANGE `temp_pref` `temp_pref` INT(11) NULL;
