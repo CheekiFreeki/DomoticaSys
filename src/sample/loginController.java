@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -38,6 +39,8 @@ public class loginController implements Initializable {
     private TextField usernameTextfield;
     @FXML
     private PasswordField enterPasswordField;
+    @FXML
+    private Hyperlink loginRegisterKnop;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -54,6 +57,9 @@ public class loginController implements Initializable {
 
         if (usernameTextfield.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false) {
             validateLogin();
+            Stage stage = (Stage) loginTerugKnop.getScene().getWindow();
+            stage.close();
+            mainMenuForm();
         } else {
             loginMsgLabel.setText("Vul alstublieft uw gebruikersnaam en wachtwoord in.");
         }
@@ -71,7 +77,7 @@ public class loginController implements Initializable {
         try {
 
             if (Database.checkPassword(usernameTextfield.getText(), hashedPassword)) {
-                    //loginMsgLabel.setText("Gelukt");
+                //loginMsgLabel.setText("Gelukt");
                 // open home pagina
                 createAccountForm();
 
@@ -103,14 +109,20 @@ public class loginController implements Initializable {
                 }
 
             } else {
-                    loginMsgLabel.setText("Helaas niet gelukt: verkeerde combinatie wachtwoord en gebruikersnaam!");
-                }
+                loginMsgLabel.setText("Helaas niet gelukt: verkeerde combinatie wachtwoord en gebruikersnaam!");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
             loginMsgLabel.setText("Helaas niet gelukt: geen verbinding met Database!");
         }
 
+    }
+
+    public void loginRegisterKnopOnAction(ActionEvent event){
+        Stage stage = (Stage) loginRegisterKnop.getScene().getWindow();
+        stage.close();
+        createAccountForm();
     }
 
     public void createAccountForm(){
@@ -121,6 +133,21 @@ public class loginController implements Initializable {
             RegistreerStage.initStyle(StageStyle.UNDECORATED);
             RegistreerStage.setScene(new Scene(root, 520, 570));
             RegistreerStage.show();
+
+        } catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void mainMenuForm(){
+        try{
+
+            Parent root = FXMLLoader.load(getClass().getResource("hoofdscherm.fxml"));
+            Stage HoofdMenuStage = new Stage();
+            HoofdMenuStage.initStyle(StageStyle.UNDECORATED);
+            HoofdMenuStage.setScene(new Scene(root, 600, 400));
+            HoofdMenuStage.show();
 
         } catch(Exception e){
             e.printStackTrace();
