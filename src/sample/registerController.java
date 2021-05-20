@@ -105,4 +105,20 @@ public class registerController implements Initializable {
         }
     }
 
+    public void loginAccountForm(){
+
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+            Stage HoofdMenuStage = new Stage();
+            HoofdMenuStage.initStyle(StageStyle.UNDECORATED);
+            HoofdMenuStage.setScene(new Scene(root, 600, 400));
+            HoofdMenuStage.show();
+
+        } catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+
+    }
+
 }
