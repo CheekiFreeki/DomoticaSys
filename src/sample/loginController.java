@@ -103,12 +103,12 @@ public class loginController implements Initializable {
                 }
 
             } else {
-                    loginMsgLabel.setText("Helaas niet gelukt");
+                    loginMsgLabel.setText("Helaas niet gelukt: verkeerde combinatie wachtwoord en gebruikersnaam!");
                 }
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
-            loginMsgLabel.setText("Helaas niet gelukt");
+            loginMsgLabel.setText("Helaas niet gelukt: geen verbinding met Database!");
         }
 
     }
