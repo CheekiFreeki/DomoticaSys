@@ -31,12 +31,12 @@ public class Database {
         Connection connection = DriverManager.getConnection(url, user, pass);
         Statement statement = connection.createStatement();
 
-        PreparedStatement ps= connection.prepareStatement("INSERT INTO account (username, password, firstname, surname)" +
+        PreparedStatement ps= connection.prepareStatement("INSERT INTO account (firstname, surname, username, password)" +
                                                               "VALUES (?,?,?,?) " );
-        ps.setString(1, username);
-        ps.setString(2, hashedPassword);
-        ps.setString(3, firstname);
-        ps.setString(4, surname);
+        ps.setString(1, firstname);
+        ps.setString(2, surname);
+        ps.setString(3, username);
+        ps.setString(4, hashedPassword);
         ps.executeUpdate();
         connection.close();
     }

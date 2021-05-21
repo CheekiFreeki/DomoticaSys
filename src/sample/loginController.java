@@ -54,9 +54,6 @@ public class loginController implements Initializable {
 
         if (usernameTextfield.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false) {
             validateLogin();
-            Stage stage = (Stage) loginTerugKnop.getScene().getWindow();
-            stage.close();
-            mainMenuForm();
         } else {
             loginMsgLabel.setText("Vul alstublieft uw gebruikersnaam en wachtwoord in.");
         }
@@ -72,11 +69,11 @@ public class loginController implements Initializable {
 
         String hashedPassword = Account.hashPassword(enterPasswordField.getText());
         try {
-
             if (Database.checkPassword(usernameTextfield.getText(), hashedPassword)) {
-                //loginMsgLabel.setText("Gelukt");
-                // open home pagina
-                createAccountForm();
+
+                Stage stage = (Stage) loginTerugKnop.getScene().getWindow();
+                stage.close();
+                mainMenuForm();
 
                 Account account = new Account(usernameTextfield.getText());
 

@@ -94,8 +94,7 @@ public class registerController implements Initializable {
         try{
             registerMsgLabel.setText("Succesvolle registratie");
 
-            Account account = Account.signUp(gebruikersnaam, Account.hashPassword(password), voornaam, achternaam);
-
+            Account account = Account.signUp(gebruikersnaam, password, voornaam, achternaam);
 
             //gebruiker is ingelogd en moet nu naar hoofdscherm.
 

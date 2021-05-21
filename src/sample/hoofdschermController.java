@@ -33,6 +33,8 @@ public class hoofdschermController implements Initializable {
     @FXML
     private Hyperlink mainLoggingKnop;
 
+    private Account account;
+
     ObservableList<String> list = FXCollections.observableArrayList("Hoofdmenu", "Accountinstellingen", "Uitloggen en sluiten");
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -96,8 +98,9 @@ public class hoofdschermController implements Initializable {
         }
     }
 
-
-    private Account account;
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
     public void updateTemp()
     {
