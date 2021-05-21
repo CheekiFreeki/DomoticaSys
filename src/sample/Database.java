@@ -1,6 +1,7 @@
 package sample;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Database {
     public Connection databaseLink;
@@ -210,5 +211,60 @@ public class Database {
         }
         connection.close();
         return temp;
+    }
+    public static void logTemp(double temp) throws SQLException
+    {
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+
+        PreparedStatement ps= connection.prepareStatement("INSERT INTO sensor_log (idSensor, reading, time) " +
+                                                              "VALUES (?, ?, ?) " );
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        ps.setInt(1, 1);
+        ps.setDouble(2, temp);
+        ps.setTimestamp(3, timestamp);
+        ps.executeUpdate();
+        connection.close();
+    }
+    public static void logLight(int light) throws SQLException
+    {
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+
+        PreparedStatement ps= connection.prepareStatement("INSERT INTO sensor_log (idSensor, reading, time) " +
+                                                              "VALUES (?, ?, ?) " );
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        ps.setInt(1, 2);
+        ps.setInt(2, light);
+        ps.setTimestamp(3, timestamp);
+        ps.executeUpdate();
+        connection.close();
+    }
+    public static ArrayList getLog(int sensorId) throws SQLException
+    {
+        String temp;
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+
+        PreparedStatement ps = connection.prepareStatement( "SELECT reading " +
+                                                                "FROM account " +
+                                                                "WHERE sensorId = ? " +
+                                                                "ORDER BY time " +
+                                                                "LIMIT 10");
+
+        ArrayList<Integer> logArray = null;
+        ps.setInt(1, sensorId);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next())
+        {
+            int log = rs.getInt("reading");
+            logArray.add(log);
+        }
+        connection.close();
+        return logArray;
     }
 }

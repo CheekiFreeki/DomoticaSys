@@ -26,7 +26,7 @@ public class RaspberryPi
         {
             URL url = new URL("http://" + ip + "/throwdata.py");
             URLConnection uc = url.openConnection();
-            uc.setConnectTimeout(2000);
+            uc.setConnectTimeout(1000);
             in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
             jsonArray = in.readLine();
         }

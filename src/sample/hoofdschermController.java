@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -16,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.sql.Connection;
@@ -32,8 +36,15 @@ public class hoofdschermController implements Initializable {
     private ImageView avatarIconImageView;
     @FXML
     private Hyperlink mainLoggingKnop;
+    @FXML
+    private Label tempLabel = new Label();
+    @FXML
+    private Label lightLabel = new Label();
 
-    private Account account;
+    public static String temp = "Temperatuur wordt opgehaald...";
+    public static String light = "Lichtsterkte wordt opgehaald...";
+
+    private static Account account;
 
     ObservableList<String> list = FXCollections.observableArrayList("Hoofdmenu", "Accountinstellingen", "Uitloggen en sluiten");
 
@@ -44,6 +55,15 @@ public class hoofdschermController implements Initializable {
         accountOpties.setItems(list);
         accountOpties.setValue("Hoofdmenu");
 
+        tempLabel.setText(temp);
+        lightLabel.setText(light);
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5),e ->{
+            tempLabel.setText(temp);
+            lightLabel.setText(light);
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     public void comboChanged(ActionEvent event) {
@@ -98,78 +118,7 @@ public class hoofdschermController implements Initializable {
         }
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public void updateTemp()
-    {
-        try
-        {
-            if (account.getRpi().getLaatsteTemp()>0.0)
-            {
-                /*
-                tempLabel.setText("actuele temperatuur: " + Double.toString(account.getRpi().getLaatsteTemp()));
-                if (account.getRpi().getLaatsteTemp()>Main.maxTemp)
-                {
-                    this.verwarmingLabel.setText("verwarming staat uit.");
-                    account.getMyArduino().verwarmingUit();
-                }
-                else
-                {
-                    this.verwarmingLabel.setText("verwarming staat aan.");
-                    account.getMyArduino().verwarmingAan();
-                }
-
-                 */
-            }
-            else
-            {
-            /*
-                this.tempLabel.setText("Geen verbinding met RPI.");
-                this.verwarmingLabel.setText("verwarming staat uit.");
-                account.getMyArduino().verwarmingUit();
-
-                 */
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-    public void updateLight()
-    {
-        try
-        {
-            String sLight = account.getMyArduino().getLight();
-            if (sLight.equals("")) return;
-            /*
-            lightLabel.setText("actuele lichtsterkte: "+sLight);
-            int iLight = Integer.parseInt(sLight.replaceAll("[^0-9]", ""));
-            if(iLight<Main.minLight)
-            {
-                account.getMyArduino().lampAan();
-                lampLabel.setText("Lamp is aan.");
-            }
-            else
-            {
-                lampLabel.setText("Lamp is uit.");
-                account.getMyArduino().lampUit();
-            }
-
-             */
-        }
-        catch (Exception e)
-        {
-            /*
-            lightLabel.setText("Arduino niet aangesloten.");
-            lampLabel.setText("Lamp is uit.");
-            account.getMyArduino().lampUit();
-
-            e.printStackTrace();
-
-             */
-        }
+    public static void setAccount(Account account) {
+        hoofdschermController.account = account;
     }
 }

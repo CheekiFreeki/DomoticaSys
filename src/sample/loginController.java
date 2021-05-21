@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
@@ -76,6 +77,9 @@ public class loginController implements Initializable {
                 mainMenuForm();
 
                 Account account = new Account(usernameTextfield.getText());
+                hoofdschermController.setAccount(account);
+                Update.account= account;
+
 
                 String rpi = Database.getRpiIp(account.getUsername()),
                         arduino = Database.getArduino(account.getUsername()),
@@ -142,7 +146,6 @@ public class loginController implements Initializable {
             HoofdMenuStage.initStyle(StageStyle.UNDECORATED);
             HoofdMenuStage.setScene(new Scene(root, 600, 400));
             HoofdMenuStage.show();
-
         } catch(Exception e){
             e.printStackTrace();
             e.getCause();

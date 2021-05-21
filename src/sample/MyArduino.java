@@ -15,6 +15,7 @@ public class MyArduino
     public void play()
     {
         musicPlayer = new MusicPlayer(this, nummers);
+        //een nummer uit nummers array is bijvoorbeeld "1" of "3".
         musicPlayer.start();
     }
     public void stop()
