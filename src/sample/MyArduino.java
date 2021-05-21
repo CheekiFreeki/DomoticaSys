@@ -10,14 +10,24 @@ public class MyArduino
     private ArrayList<String> nummers = new ArrayList<String>();
     private static Arduino arduinoCon;
     private boolean done;
+    private MusicPlayer musicPlayer;
 
     public void play()
     {
-        arduinoCon.serialWrite("play");
+        musicPlayer = new MusicPlayer(this, nummers);
+        musicPlayer.start();
     }
     public void stop()
     {
-        arduinoCon.serialWrite("stop");
+        musicPlayer.interrupt();
+    }
+    public void next()
+    {
+        musicPlayer.done=true;
+    }
+    public void previous()
+    {
+        musicPlayer.previous=true;
     }
     public void pause()
     {
@@ -66,5 +76,9 @@ public class MyArduino
 
     public boolean isDone() {
         return done;
+    }
+
+    public static Arduino getArduinoCon() {
+        return arduinoCon;
     }
 }
