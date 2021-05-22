@@ -26,18 +26,19 @@ public class Update extends Thread
                     else
                     {
                         laatsteTemp = account.getRpi().getLaatsteTemp();
+                        Database.logTemp(laatsteTemp);
                     }
                     if (laatsteTemp>0.0)
                     {
 
                         if (laatsteTemp>Main.maxTemp)
                         {
-                            hoofdschermController.temp = "Temperatuur: " + Double.toString(laatsteTemp)+ ", verwarming uit.";
+                            hoofdschermController.temp = "Temperatuur: " + laatsteTemp + ", verwarming uit.";
                             account.getMyArduino().verwarmingUit();
                         }
                         else
                         {
-                            hoofdschermController.temp = "Temperatuur: " + Double.toString(laatsteTemp)+ ", verwarming aan.";
+                            hoofdschermController.temp = "Temperatuur: " + laatsteTemp + ", verwarming aan.";
                             account.getMyArduino().verwarmingAan();
                         }
                     }
@@ -57,40 +58,27 @@ public class Update extends Thread
 
                 try
                 {
-                    String sLight;
-                    if(account.getMyArduino()==null)
-                    {
-                        sLight = "";
-                    }
-                    else
-                    {
-                        sLight = account.getMyArduino().getLight();
-                    }
+                    String sLight = account.getMyArduino().getLight();
+                    System.out.println(sLight);
 
-                    if (!sLight.equals(""))
+                    int iLight = Integer.parseInt(sLight.replaceAll("[^0-9]", ""));
+                    Database.logLight(iLight);
+
+                    if(iLight<Main.minLight)
                     {
-                        int iLight = Integer.parseInt(sLight.replaceAll("[^0-9]", ""));
-                        if(iLight<Main.minLight)
-                        {
-                            account.getMyArduino().lampAan();
-                            hoofdschermController.light ="lichtsterkte: "+sLight+ " , lamp aan.";
-                        }
-                        else
-                        {
-                            hoofdschermController.light ="lichtsterkte: "+sLight+ " , lamp uit." ;
-                            account.getMyArduino().lampUit();
-                        }
+                        account.getMyArduino().lampAan();
+                        hoofdschermController.light ="lichtsterkte: "+iLight+ " , lamp aan.";
                     }
                     else
                     {
-                        hoofdschermController.light = "Geen verbinding met arduino, lamp uit.";
-                        account.getMyArduino().lampUit();
+                            hoofdschermController.light ="lichtsterkte: "+iLight+ " , lamp uit." ;
+                            account.getMyArduino().lampUit();
                     }
                 }
                 catch (Exception e)
                 {
                     hoofdschermController.light = "Geen verbinding met arduino, lamp uit.";
-                    //e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
             catch (Exception e)

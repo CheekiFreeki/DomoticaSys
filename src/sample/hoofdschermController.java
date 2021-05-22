@@ -46,7 +46,7 @@ public class hoofdschermController implements Initializable {
 
     private static Account account;
 
-    ObservableList<String> list = FXCollections.observableArrayList("Hoofdmenu", "Accountinstellingen", "Uitloggen en sluiten");
+    ObservableList<String> list = FXCollections.observableArrayList("Hoofdmenu", "Accountinstellingen", "Uitloggen en sluiten", "Logging");
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        File MainMenuImFile = new File("@../../Images/AvatarIcon.png");
@@ -77,7 +77,8 @@ public class hoofdschermController implements Initializable {
             case "Accountinstellingen":
                 mainMenuAccountinstellingenForm();
                 break;
-
+            case "Logging":
+                loggingPage();
         }
 
     }
@@ -113,6 +114,21 @@ public class hoofdschermController implements Initializable {
             HoofdMenuStage.show();
 
         } catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void loggingPage()
+    {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Tempgrafiek.fxml"));
+            Stage HoofdMenuStage = new Stage();
+            HoofdMenuStage.initStyle(StageStyle.UNDECORATED);
+            HoofdMenuStage.setScene(new Scene(root, 600, 400));
+            HoofdMenuStage.show();
+        }catch (Exception e)
+        {
             e.printStackTrace();
             e.getCause();
         }

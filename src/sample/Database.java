@@ -244,9 +244,11 @@ public class Database {
         ps.executeUpdate();
         connection.close();
     }
-    public static ArrayList getLog(int sensorId) throws SQLException
+    public static ArrayList<Integer> getLog(int sensorId) throws SQLException
     {
         String temp;
+        ArrayList<Integer> logArray;
+
         Connection connection = DriverManager.getConnection(url, user, pass);
         Statement statement = connection.createStatement();
 
@@ -256,7 +258,7 @@ public class Database {
                                                                 "ORDER BY time " +
                                                                 "LIMIT 10");
 
-        ArrayList<Integer> logArray = null;
+        logArray = null;
         ps.setInt(1, sensorId);
         ResultSet rs = ps.executeQuery();
         while (rs.next())
