@@ -80,7 +80,6 @@ public class hoofdschermController implements Initializable {
             case "Logging":
                 loggingPage();
         }
-
     }
 
     public void mainMenuCloseKnopOnAction() {
@@ -122,7 +121,7 @@ public class hoofdschermController implements Initializable {
     public void loggingPage()
     {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Tempgrafiek.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("tempgrafiek.fxml"));
             Stage HoofdMenuStage = new Stage();
             HoofdMenuStage.initStyle(StageStyle.UNDECORATED);
             HoofdMenuStage.setScene(new Scene(root, 600, 400));

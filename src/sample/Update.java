@@ -26,11 +26,10 @@ public class Update extends Thread
                     else
                     {
                         laatsteTemp = account.getRpi().getLaatsteTemp();
-                        Database.logTemp(laatsteTemp);
                     }
                     if (laatsteTemp>0.0)
                     {
-
+                        Database.logTemp(laatsteTemp);
                         if (laatsteTemp>Main.maxTemp)
                         {
                             hoofdschermController.temp = "Temperatuur: " + laatsteTemp + ", verwarming uit.";
