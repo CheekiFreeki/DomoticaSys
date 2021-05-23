@@ -27,21 +27,21 @@ public class TempgrafiekController implements Initializable
     @FXML
     private Button backButton;
 
-    double[] logArray;
+    ArrayList<Double> logArray;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         XYChart.Series series = new XYChart.Series();
         try {
             logArray = Database.getTempLog(1);
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
-
         for (int i = 0; i<10; i++)
         {
-            System.out.println(logArray[i]);
-            series.getData().add(new XYChart.Data(String.valueOf(i), logArray[i]));
+
+            series.getData().add(new XYChart.Data(String.valueOf(i), logArray.get(i)));
         }
         graph.getData().addAll(series);
     }

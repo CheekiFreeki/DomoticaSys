@@ -244,27 +244,30 @@ public class Database {
         ps.executeUpdate();
         connection.close();
     }
-    public static double[] getTempLog(int sensorId) throws SQLException
+    public static ArrayList<Double> getTempLog(int sensorId) throws SQLException
     {
         String temp;
-        double[] logArray = new double[10];
+        ArrayList<Double> logArray = new ArrayList<Double>();
 
         Connection connection = DriverManager.getConnection(url, user, pass);
         Statement statement = connection.createStatement();
 
         PreparedStatement ps = connection.prepareStatement( "SELECT reading " +
+                                                                "FROM ( " +
+                                                                "SELECT reading, time " +
                                                                 "FROM sensor_log " +
-                                                                "WHERE IdSensor = ? " +
+                                                                "WHERE idSensor = ? " +
                                                                 "ORDER BY time DESC " +
-                                                                "LIMIT 10");
+                                                                "LIMIT 10) SQ " +
+                                                                "ORDER BY time");
 
         ps.setInt(1, sensorId);
         ResultSet rs = ps.executeQuery();
         int i = 0;
         while (rs.next())
         {
-            double log = rs.getInt("reading");
-            logArray[i] = log;
+            double log = rs.getDouble("reading");
+            logArray.add(i, log);
             i++;
         }
         connection.close();
