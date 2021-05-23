@@ -3,10 +3,13 @@ package sample;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+
 public class Update extends Thread
 {
 
     public static Account account;
+    public boolean test= true;
 
     public void run()
     {
@@ -44,22 +47,22 @@ public class Update extends Thread
                     else
                     {
                         hoofdschermController.temp = "Geen verbinding met RPI, verwarming uit.";
-                        System.out.println(hoofdschermController.temp);
                         account.getMyArduino().verwarmingUit();
+                    }
+                    if (Thread.currentThread().isInterrupted()) {
+                        loop=false;
                     }
                 }
                 catch (Exception e)
                 {
                     //e.printStackTrace();
                 }
-
                 Thread.sleep(2000);
-
                 try
                 {
+                    System.out.println("voorLamp");
                     String sLight = account.getMyArduino().getLight();
-                    System.out.println(sLight);
-
+                    System.out.println("naLamp");
                     int iLight = Integer.parseInt(sLight.replaceAll("[^0-9]", ""));
                     Database.logLight(iLight);
 
@@ -70,8 +73,11 @@ public class Update extends Thread
                     }
                     else
                     {
-                            hoofdschermController.light ="lichtsterkte: "+iLight+ " , lamp uit." ;
-                            account.getMyArduino().lampUit();
+                        hoofdschermController.light ="lichtsterkte: "+iLight+ " , lamp uit." ;
+                        account.getMyArduino().lampUit();
+                    }
+                    if (Thread.currentThread().isInterrupted()) {
+                        loop=false;
                     }
                 }
                 catch (Exception e)

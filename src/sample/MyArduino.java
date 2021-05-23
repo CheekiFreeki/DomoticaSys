@@ -12,15 +12,17 @@ public class MyArduino
     private boolean done;
     private MusicPlayer musicPlayer;
 
-    public void play()
+    public void play(Update updater)
     {
         musicPlayer = new MusicPlayer(this, nummers);
         //een nummer uit nummers array is bijvoorbeeld "1" of "3".
+        updater.interrupt();
         musicPlayer.start();
+        MusicPlayer.setUpdater(updater);
     }
     public void stop()
     {
-        musicPlayer.interrupt();
+        musicPlayer.stop=true;
     }
     public void next()
     {
@@ -81,5 +83,10 @@ public class MyArduino
 
     public static Arduino getArduinoCon() {
         return arduinoCon;
+    }
+
+    public void setNummers(ArrayList<String> nummers)
+    {
+        this.nummers = nummers;
     }
 }

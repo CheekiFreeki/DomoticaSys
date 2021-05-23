@@ -40,7 +40,7 @@ public class TempgrafiekController implements Initializable
         }
         for (int i = 0; i<10; i++)
         {
-
+            System.out.println(i);
             series.getData().add(new XYChart.Data(String.valueOf(i), logArray.get(i)));
         }
         graph.getData().addAll(series);

@@ -45,7 +45,7 @@ public class RaspberryPi
             JSONArray json = new JSONArray(jsonArray);
             JSONObject laatsteMeting = json.getJSONObject(json.length() - 1);
 
-            return laatsteMeting.getDouble("waarde")-11;
+            return laatsteMeting.getDouble("waarde");
         }
     }
 }
