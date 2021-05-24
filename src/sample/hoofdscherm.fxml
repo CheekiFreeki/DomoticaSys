@@ -113,12 +113,12 @@
                   </AnchorPane>
               </items>
             </SplitPane>
-            <Label layoutX="14.0" layoutY="40.0" text="Temperatuur:" textFill="WHITE">
+            <Label fx:id="tempLabel" layoutX="14.0" layoutY="40.0" text="Temperatuur:" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="67.0" text="Lichtsterkte:" textFill="WHITE">
+            <Label fx:id="lightLabel" layoutX="14.0" layoutY="67.0" text="Lichtsterkte:" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>

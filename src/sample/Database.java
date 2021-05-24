@@ -1,6 +1,7 @@
 package sample;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Database {
     public Connection databaseLink;
@@ -31,12 +32,12 @@ public class Database {
         Connection connection = DriverManager.getConnection(url, user, pass);
         Statement statement = connection.createStatement();
 
-        PreparedStatement ps= connection.prepareStatement("INSERT INTO account (username, password, firstname, surname)" +
+        PreparedStatement ps= connection.prepareStatement("INSERT INTO account (firstname, surname, username, password)" +
                                                               "VALUES (?,?,?,?) " );
-        ps.setString(1, username);
-        ps.setString(2, hashedPassword);
-        ps.setString(3, firstname);
-        ps.setString(4, surname);
+        ps.setString(1, firstname);
+        ps.setString(2, surname);
+        ps.setString(3, username);
+        ps.setString(4, hashedPassword);
         ps.executeUpdate();
         connection.close();
     }
@@ -210,5 +211,66 @@ public class Database {
         }
         connection.close();
         return temp;
+    }
+    public static void logTemp(double temp) throws SQLException
+    {
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+
+        PreparedStatement ps= connection.prepareStatement("INSERT INTO sensor_log (idSensor, reading, time) " +
+                                                              "VALUES (?, ?, ?) " );
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        ps.setInt(1, 1);
+        ps.setDouble(2, temp);
+        ps.setTimestamp(3, timestamp);
+        ps.executeUpdate();
+        connection.close();
+    }
+    public static void logLight(int light) throws SQLException
+    {
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+
+        PreparedStatement ps= connection.prepareStatement("INSERT INTO sensor_log (idSensor, reading, time) " +
+                                                              "VALUES (?, ?, ?) " );
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        ps.setInt(1, 2);
+        ps.setInt(2, light);
+        ps.setTimestamp(3, timestamp);
+        ps.executeUpdate();
+        connection.close();
+    }
+    public static ArrayList<Double> getTempLog(int sensorId) throws SQLException
+    {
+        String temp;
+        ArrayList<Double> logArray = new ArrayList<Double>();
+
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+
+        PreparedStatement ps = connection.prepareStatement( "SELECT reading " +
+                                                                "FROM ( " +
+                                                                "SELECT reading, time " +
+                                                                "FROM sensor_log " +
+                                                                "WHERE idSensor = ? " +
+                                                                "ORDER BY time DESC " +
+                                                                "LIMIT 10) SQ " +
+                                                                "ORDER BY time");
+
+        ps.setInt(1, sensorId);
+        ResultSet rs = ps.executeQuery();
+        int i = 0;
+        while (rs.next())
+        {
+            double log = rs.getDouble("reading");
+            logArray.add(i, log);
+            i++;
+        }
+        connection.close();
+        return logArray;
     }
 }

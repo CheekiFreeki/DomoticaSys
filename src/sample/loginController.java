@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
@@ -54,9 +55,6 @@ public class loginController implements Initializable {
 
         if (usernameTextfield.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false) {
             validateLogin();
-            Stage stage = (Stage) loginTerugKnop.getScene().getWindow();
-            stage.close();
-            mainMenuForm();
         } else {
             loginMsgLabel.setText("Vul alstublieft uw gebruikersnaam en wachtwoord in.");
         }
@@ -72,13 +70,16 @@ public class loginController implements Initializable {
 
         String hashedPassword = Account.hashPassword(enterPasswordField.getText());
         try {
-
             if (Database.checkPassword(usernameTextfield.getText(), hashedPassword)) {
-                //loginMsgLabel.setText("Gelukt");
-                // open home pagina
-                createAccountForm();
+
+                Stage stage = (Stage) loginTerugKnop.getScene().getWindow();
+                stage.close();
+                mainMenuForm();
 
                 Account account = new Account(usernameTextfield.getText());
+                hoofdschermController.setAccount(account);
+                Update.account= account;
+
 
                 String rpi = Database.getRpiIp(account.getUsername()),
                         arduino = Database.getArduino(account.getUsername()),
@@ -145,7 +146,6 @@ public class loginController implements Initializable {
             HoofdMenuStage.initStyle(StageStyle.UNDECORATED);
             HoofdMenuStage.setScene(new Scene(root, 600, 400));
             HoofdMenuStage.show();
-
         } catch(Exception e){
             e.printStackTrace();
             e.getCause();
