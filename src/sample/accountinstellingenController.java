@@ -37,5 +37,29 @@ public class accountinstellingenController implements Initializable {
     public void accountinstellingenTerugKnopOnAction (ActionEvent event){
         Stage stage = (Stage) accountinstellingenTerugKnop.getScene().getWindow();
         stage.close();
+        mainMenuForm();
+    }
+
+    public void mainMenuForm(){
+        try{
+
+            Parent root = FXMLLoader.load(getClass().getResource("hoofdscherm.fxml"));
+            Stage HoofdMenuStage = new Stage();
+            HoofdMenuStage.initStyle(StageStyle.UNDECORATED);
+            HoofdMenuStage.setScene(new Scene(root, 600, 400));
+            HoofdMenuStage.show();
+
+        } catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void setUserId(){
+
+    }
+
+    public void changeUsername(){
+
     }
 }

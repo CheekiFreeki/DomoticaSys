@@ -53,6 +53,8 @@ public class hoofdschermController implements Initializable {
                 //mainMenuForm();
                 break;
             case "Accountinstellingen":
+                Stage stage = (Stage) accountOpties.getScene().getWindow();
+                stage.close();
                 mainMenuAccountinstellingenForm();
                 break;
 
@@ -64,6 +66,26 @@ public class hoofdschermController implements Initializable {
         Stage stage = (Stage) accountOpties.getScene().getWindow();
         stage.close();
         Platform.exit();
+    }
+
+    public void mainMenuPlayButton(){
+        MyArduino Speler = new MyArduino();
+        Speler.play();
+    }
+
+    public void mainMenuPauseButton(){
+        MyArduino Speler = new MyArduino();
+        Speler.stop();
+    }
+
+    public void mainMenuNextButton(){
+        MyArduino Speler = new MyArduino();
+        Speler.play();
+    }
+
+    public void mainMenuPrevButton(){
+        MyArduino Speler = new MyArduino();
+        Speler.play();
     }
 
     public void mainMenuForm(){
@@ -85,6 +107,21 @@ public class hoofdschermController implements Initializable {
         try{
 
             Parent root = FXMLLoader.load(getClass().getResource("accountinstellingen.fxml"));
+            Stage HoofdMenuStage = new Stage();
+            HoofdMenuStage.initStyle(StageStyle.UNDECORATED);
+            HoofdMenuStage.setScene(new Scene(root, 600, 400));
+            HoofdMenuStage.show();
+
+        } catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void mainMenuLoggingForm(){
+        try{
+
+            Parent root = FXMLLoader.load(getClass().getResource("tempgrafiek.fxml"));
             Stage HoofdMenuStage = new Stage();
             HoofdMenuStage.initStyle(StageStyle.UNDECORATED);
             HoofdMenuStage.setScene(new Scene(root, 600, 400));

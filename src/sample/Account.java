@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.control.TextField;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -60,6 +62,7 @@ public class Account {
     public void setMyArduino(MyArduino myArduino) {
         this.myArduino = myArduino;
     }
+
 }
 
 
