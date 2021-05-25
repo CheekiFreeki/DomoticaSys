@@ -43,26 +43,26 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="javaFXlib" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.24/mysql-connector-java-8.0.24/mysql-connector-java-8.0.24.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/java-json.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/Desktop/java-json.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Desktop/mysqlconnector/mysql-connector-java-8.0.24/mysql-connector-java-8.0.24.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/java-json.jar/java-json.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/Downloads/java-json.jar/java-json.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="library" name="javaFXlib" level="project" />
   </component>
 </module>

@@ -37,6 +37,22 @@ public class hoofdschermController implements Initializable {
     @FXML
     private Hyperlink mainLoggingKnop;
     @FXML
+    private Button playSongKnop;
+    @FXML
+    private ImageView playImageView;
+    @FXML
+    private Button pauseSongKnop;
+    @FXML
+    private ImageView pauseImageView;
+    @FXML
+    private Button nextSongKnop;
+    @FXML
+    private ImageView nextImageView;
+    @FXML
+    private Button prevSongKnop;
+    @FXML
+    private ImageView prevImageView;
+    @FXML
     private Label tempLabel = new Label();
     @FXML
     private Label lightLabel = new Label();
@@ -49,6 +65,22 @@ public class hoofdschermController implements Initializable {
     ObservableList<String> list = FXCollections.observableArrayList("Hoofdmenu", "Accountinstellingen", "Uitloggen en sluiten");
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        File playFile = new File("@../../Images/PlayWhite.png");
+        Image playImage = new Image(playFile.toURI().toString());
+        playImageView.setImage(playImage);
+
+        File pauseFile = new File("@../../Images/PauseWhite.png");
+        Image pauseImage = new Image(pauseFile.toURI().toString());
+        pauseImageView.setImage(pauseImage);
+
+        File nextFile = new File("@../../Images/NextIcon.png");
+        Image nextImage = new Image(nextFile.toURI().toString());
+        nextImageView.setImage(nextImage);
+
+        File prevFile = new File("@../../Images/PrevIcon.png");
+        Image prevImage = new Image(prevFile.toURI().toString());
+        prevImageView.setImage(prevImage);
+
 //        File MainMenuImFile = new File("@../../Images/AvatarIcon.png");
 //        Image AvatarIconImage = new Image(MainMenuImFile.toURI().toString());
 //        avatarIconImageView.setImage(AvatarIconImage);
@@ -91,7 +123,7 @@ public class hoofdschermController implements Initializable {
 
     public void mainMenuPlayButton(){
         MyArduino Speler = new MyArduino();
-        Speler.play();
+        Speler.play(Main.updater);
     }
 
     public void mainMenuPauseButton(){
@@ -101,12 +133,12 @@ public class hoofdschermController implements Initializable {
 
     public void mainMenuNextButton(){
         MyArduino Speler = new MyArduino();
-        Speler.play();
+        Speler.resume();
     }
 
     public void mainMenuPrevButton(){
         MyArduino Speler = new MyArduino();
-        Speler.play();
+        Speler.pause();
     }
 
     public void mainMenuForm(){
@@ -156,5 +188,9 @@ public class hoofdschermController implements Initializable {
 
     public static void setAccount(Account account) {
         hoofdschermController.account = account;
+    }
+
+    public static Account getAccount(){
+        return account;
     }
 }

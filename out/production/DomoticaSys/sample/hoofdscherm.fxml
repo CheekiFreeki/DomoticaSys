@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,7 +18,6 @@
    <bottom>
       <AnchorPane prefHeight="85.0" prefWidth="600.0" style="-fx-background-color: #181818;" BorderPane.alignment="CENTER">
          <children>
-            <Slider layoutX="484.0" layoutY="28.0" prefHeight="14.0" prefWidth="89.0" />
             <Label layoutX="31.0" layoutY="27.0" text="Songname" textFill="WHITE">
                <font>
                   <Font size="13.0" />
@@ -33,7 +31,7 @@
             </Label>
             <Button fx:id="playSongKnop" layoutX="257.0" layoutY="22.0" mnemonicParsing="false" onAction="#mainMenuPlayButton" prefHeight="23.0" prefWidth="30.0" style="-fx-background-color: #181818;">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="playImageView" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Images/PlayWhite.png" />
                      </image>
@@ -41,7 +39,7 @@
                </graphic></Button>
             <Button fx:id="nextSongKnop" layoutX="357.0" layoutY="22.0" mnemonicParsing="false" onAction="#mainMenuNextButton" prefHeight="23.0" prefWidth="30.0" style="-fx-background-color: #181818;">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="nextImageView" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Images/NextIcon.png" />
                      </image>
@@ -49,7 +47,7 @@
                </graphic></Button>
             <Button fx:id="prevSongKnop" layoutX="207.0" layoutY="22.0" mnemonicParsing="false" onAction="#mainMenuPrevButton" prefHeight="23.0" prefWidth="30.0" style="-fx-background-color: #181818;">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="prevImageView" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Images/PrevIcon.png" />
                      </image>
@@ -57,7 +55,7 @@
                </graphic></Button>
             <Button fx:id="pauseSongKnop" layoutX="307.0" layoutY="22.0" mnemonicParsing="false" onAction="#mainMenuPauseButton" prefHeight="23.0" prefWidth="30.0" style="-fx-background-color: #181818;">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="pauseImageView" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Images/PauseWhite.png" />
                      </image>
@@ -125,7 +123,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Hyperlink layoutX="258.0" layoutY="37.0" text="Klik voor specificaties" textFill="WHITE">
+            <Hyperlink fx:id="mainLoggingKnop" layoutX="258.0" layoutY="37.0" onAction="#mainMenuLoggingForm" text="Klik voor specificaties" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>

@@ -273,4 +273,26 @@ public class Database {
         connection.close();
         return logArray;
     }
+
+    public static void changeUsername(String oldUsername, String newUsername) throws SQLException
+    {
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+
+        PreparedStatement ps= connection.prepareStatement("UPDATE `account` SET `username`= " + newUsername + " WHERE username = " + oldUsername);
+        ps.executeUpdate();
+        connection.close();
+    }
+
+//    public static void changePass(String hashedPassword) throws SQLException
+//    {
+//        Connection connection = DriverManager.getConnection(url, user, pass);
+//        Statement statement = connection.createStatement();
+//
+//        PreparedStatement ps= connection.prepareStatement("UPDATE `account` SET `password`= " . changePassField . " WHERE username= " . userID. "; );
+//                ps.setString(4, hashedPassword);
+//        ps.executeUpdate();
+//        connection.close();
+//    }
+
 }

@@ -31,7 +31,7 @@
             </Label>
             <Button fx:id="playSongKnop" layoutX="257.0" layoutY="22.0" mnemonicParsing="false" onAction="#mainMenuPlayButton" prefHeight="23.0" prefWidth="30.0" style="-fx-background-color: #181818;">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="playImageView" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Images/PlayWhite.png" />
                      </image>
@@ -39,7 +39,7 @@
                </graphic></Button>
             <Button fx:id="nextSongKnop" layoutX="357.0" layoutY="22.0" mnemonicParsing="false" onAction="#mainMenuNextButton" prefHeight="23.0" prefWidth="30.0" style="-fx-background-color: #181818;">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="nextImageView" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Images/NextIcon.png" />
                      </image>
@@ -47,7 +47,7 @@
                </graphic></Button>
             <Button fx:id="prevSongKnop" layoutX="207.0" layoutY="22.0" mnemonicParsing="false" onAction="#mainMenuPrevButton" prefHeight="23.0" prefWidth="30.0" style="-fx-background-color: #181818;">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="prevImageView" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Images/PrevIcon.png" />
                      </image>
@@ -55,7 +55,7 @@
                </graphic></Button>
             <Button fx:id="pauseSongKnop" layoutX="307.0" layoutY="22.0" mnemonicParsing="false" onAction="#mainMenuPauseButton" prefHeight="23.0" prefWidth="30.0" style="-fx-background-color: #181818;">
                <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="pauseImageView" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Images/PauseWhite.png" />
                      </image>

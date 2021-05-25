@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 public class Account {
-    private final String username;
+    private String username;
     private RaspberryPi rpi;
     private MyArduino myArduino;
 
@@ -62,6 +62,10 @@ public class Account {
     public void setMyArduino(MyArduino myArduino) {
         this.myArduino = myArduino;
     }
+
+    public void setUsername(String newUsername){
+        this.username = newUsername;
+    };
 
 }
 

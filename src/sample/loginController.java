@@ -22,6 +22,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import java.net.URL;
+import java.util.jar.Attributes;
 
 public class loginController implements Initializable {
 
@@ -80,7 +81,6 @@ public class loginController implements Initializable {
                 hoofdschermController.setAccount(account);
                 Update.account= account;
 
-
                 String rpi = Database.getRpiIp(account.getUsername()),
                         arduino = Database.getArduino(account.getUsername()),
                         maxTemp = Database.getTemp(account.getUsername()),
@@ -137,6 +137,7 @@ public class loginController implements Initializable {
             e.getCause();
         }
     }
+
 
     public void mainMenuForm(){
         try{
