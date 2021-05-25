@@ -12,6 +12,7 @@ public class Main extends Application {
     public static Account mainAccount;
     public static int maxTemp = 20;
     public static int minLight = 150;
+    public static Update updater;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -24,6 +25,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         Update update = new Update();
+        updater = update;
         update.start();
         launch(args);
         update.interrupt();
