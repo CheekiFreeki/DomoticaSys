@@ -25,6 +25,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import java.net.URL;
@@ -56,6 +57,20 @@ public class hoofdschermController implements Initializable {
     private Label tempLabel = new Label();
     @FXML
     private Label lightLabel = new Label();
+    @FXML
+    private CheckBox lied1;
+    @FXML
+    private CheckBox lied2;
+    @FXML
+    private CheckBox lied3;
+    @FXML
+    private CheckBox lied4;
+    @FXML
+    private CheckBox lied5;
+    @FXML
+    private Button opslaan;
+
+    MyArduino Speler = new MyArduino();
 
     public static String temp = "Temperatuur wordt opgehaald...";
     public static String light = "Lichtsterkte wordt opgehaald...";
@@ -65,6 +80,7 @@ public class hoofdschermController implements Initializable {
     ObservableList<String> list = FXCollections.observableArrayList("Hoofdmenu", "Accountinstellingen", "Uitloggen en sluiten");
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         File playFile = new File("@../../Images/PlayWhite.png");
         Image playImage = new Image(playFile.toURI().toString());
         playImageView.setImage(playImage);
@@ -122,23 +138,19 @@ public class hoofdschermController implements Initializable {
     }
 
     public void mainMenuPlayButton(){
-        MyArduino Speler = new MyArduino();
         Speler.play(Main.updater);
     }
 
     public void mainMenuPauseButton(){
-        MyArduino Speler = new MyArduino();
         Speler.stop();
     }
 
     public void mainMenuNextButton(){
-        MyArduino Speler = new MyArduino();
-        Speler.resume();
+        Speler.next();
     }
 
     public void mainMenuPrevButton(){
-        MyArduino Speler = new MyArduino();
-        Speler.pause();
+        Speler.previous();
     }
 
     public void mainMenuForm(){
@@ -184,6 +196,32 @@ public class hoofdschermController implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+    }
+
+    public void opslaan()
+    {
+        ArrayList<String> nummers = new ArrayList<String>();
+        if(lied1.isSelected())
+        {
+            nummers.add("1");
+        }
+        if(lied2.isSelected())
+        {
+            nummers.add("2");
+        }
+        if(lied3.isSelected())
+        {
+            nummers.add("3");
+        }
+        if(lied4.isSelected())
+        {
+            nummers.add("4");
+        }
+        if(lied5.isSelected())
+        {
+            nummers.add("5");
+        }
+        Speler.setNummers(nummers);
     }
 
     public static void setAccount(Account account) {

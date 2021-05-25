@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.CheckBox?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.hoofdschermController">
    <bottom>
       <AnchorPane prefHeight="85.0" prefWidth="600.0" style="-fx-background-color: #181818;" BorderPane.alignment="CENTER">
@@ -92,23 +93,28 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="100.0" style="-fx-background-color: #121212;">
                      <children>
-                        <Label layoutX="15.0" layoutY="16.0" text="&lt;Playlist&gt;" textFill="WHITE">
+                        <Label layoutX="15.0" layoutY="16.0" text="Playlist" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="15.0" layoutY="48.0" text="&lt;SongName&gt;" textFill="WHITE">
+                        <Label layoutX="15.0" layoutY="48.0" text="SongName" textFill="WHITE">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="140.0" layoutY="48.0" text="&lt;Artist&gt;" textFill="WHITE">
+                        <Label layoutX="140.0" layoutY="48.0" text="Artist" textFill="WHITE">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </Label>
-                        <ScrollBar layoutX="268.0" layoutY="48.0" orientation="VERTICAL" prefHeight="165.0" prefWidth="14.0" />
-                        <Button layoutX="183.0" layoutY="14.0" mnemonicParsing="false" text="Add song" />
+                        <ScrollBar layoutX="268.0" layoutY="47.0" orientation="VERTICAL" prefHeight="165.0" prefWidth="14.0" />
+                        <Button layoutX="189.0" layoutY="13.0" mnemonicParsing="false" text="Opslaan" />
+                        <CheckBox fx:id="lied1" layoutX="25.0" layoutY="76.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="212.0" text="Take On me - a-ha" textFill="WHITE"/>
+                        <CheckBox fx:id="lied2" layoutX="25.0" layoutY="100.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="212.0" text="Super Mario Theme - Super Mario" textFill="WHITE"/>
+                        <CheckBox fx:id="lied3" layoutX="25.0" layoutY="121.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="212.0" text="Mii Channel theme - Wii" textFill="WHITE"/>
+                        <CheckBox fx:id="lied4" layoutX="25.0" layoutY="145.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="212.0" text="Never Gonna Give You Up - Rick Astley" textFill="WHITE"/>
+                        <CheckBox fx:id="lied5" layoutX="25.0" layoutY="170.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="212.0" text="Für Elise - Beethoven" textFill="WHITE"/>
                      </children>
                   </AnchorPane>
               </items>
