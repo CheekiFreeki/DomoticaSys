@@ -27,14 +27,11 @@ public class MusicPlayer extends Thread
         {
             for (int i = 0; i< nummers.size(); i++)
             {
-                System.out.println(nummers.size());
                 arduinoCon.serialWrite(nummers.get(i));
                 previous = false;
                 done = false;
-                int test =0;
                 while (!done)
                 {
-                    test++;
                     if(stop)
                     {
                         arduinoCon.serialWrite("stop");
@@ -42,14 +39,10 @@ public class MusicPlayer extends Thread
                         i=nummers.size();
                         updater.start();
                     }
-                    System.out.println("muziektest"+test);
                     String serial = arduinoCon.serialRead().replaceAll("[^a-zA-Z]", "");
-                    System.out.println("muziek"+test);
                     if (serial.equals("done"))
                     {
-                        System.out.println("klaar");
                         done = true;
-                        System.out.println(serial);
                     }
                     if (previous)
                     {
@@ -63,7 +56,6 @@ public class MusicPlayer extends Thread
         catch (Exception e)
         {
             arduinoCon.serialWrite("stop");
-            e.printStackTrace();
         }
     }
 

@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
-    //public static GUI mainGUI;
     public static Account mainAccount;
     public static int maxTemp = 20;
     public static int minLight = 150;

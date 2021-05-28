@@ -9,7 +9,6 @@ public class Update extends Thread
 {
 
     public static Account account;
-    public boolean test= true;
 
     public void run()
     {
@@ -53,16 +52,13 @@ public class Update extends Thread
                         loop=false;
                     }
                 }
-                catch (Exception e)
+                catch (Exception ignored)
                 {
-                    //e.printStackTrace();
                 }
                 Thread.sleep(2000);
                 try
                 {
-                    System.out.println("voorLamp");
                     String sLight = account.getMyArduino().getLight();
-                    System.out.println("naLamp");
                     int iLight = Integer.parseInt(sLight.replaceAll("[^0-9]", ""));
                     Database.logLight(iLight);
 
@@ -83,7 +79,6 @@ public class Update extends Thread
                 catch (Exception e)
                 {
                     hoofdschermController.light = "Geen verbinding met arduino, lamp uit.";
-                    e.printStackTrace();
                 }
             }
             catch (Exception e)

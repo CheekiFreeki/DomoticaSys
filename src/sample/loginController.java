@@ -54,7 +54,7 @@ public class loginController implements Initializable {
 
     public void loginKnopOnAction(ActionEvent event) {
 
-        if (usernameTextfield.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false) {
+        if (!usernameTextfield.getText().isBlank() && !enterPasswordField.getText().isBlank()) {
             validateLogin();
         } else {
             loginMsgLabel.setText("Vul alstublieft uw gebruikersnaam en wachtwoord in.");
@@ -88,14 +88,12 @@ public class loginController implements Initializable {
                 if(rpi!=null)
                 {
                     account.setRpi(new RaspberryPi(rpi));
-                    //gui.updateTemp();
                 }
                 if(arduino!=null)
                 {
                     Thread.sleep(1000);
                     account.setMyArduino(new MyArduino());
                     MyArduino.setArduinoCon(arduino);
-                    //gui.updateLight();
                 }
                 if(maxTemp!=null)
                 {

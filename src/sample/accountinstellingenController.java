@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 //import static sample.Database.changePass;
-import static sample.Database.changeUsername;
+import static sample.Database.*;
 
 
 public class accountinstellingenController implements Initializable {
@@ -33,6 +33,12 @@ public class accountinstellingenController implements Initializable {
     private Button accountinstellingenTerugKnop;
     @FXML
     private TextField changeUsernameField;
+    @FXML
+    private TextField changePassField;
+    @FXML
+    private TextField changeTempField;
+    @FXML
+    private TextField changeLightField;
     @FXML
     private ImageView instellingenImageView;
 
@@ -66,13 +72,43 @@ public class accountinstellingenController implements Initializable {
     }
 
 
-    public static void setUsername(String oldUsername, String newUsername){
-    }
 
     public void changeUsernameKnopOnAction(ActionEvent event){
         Account account = hoofdschermController.getAccount();
+        account.setUsername(changeUsernameField.getText());
         try {
             changeUsername(account.getUsername(), changeUsernameField.getText());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    public void changePassKnopOnAction(ActionEvent event)
+    {
+        String hashedPassword = Account.hashPassword(changePassField.getText());
+        Account account = hoofdschermController.getAccount();
+        try {
+            changePass(account.getUsername(), hashedPassword);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void changeTempKnopOnAction(ActionEvent event)
+    {
+        Account account = hoofdschermController.getAccount();
+        Main.maxTemp = Integer.parseInt(changeTempField.getText());
+        try {
+            insertTemp(Integer.parseInt(changeTempField.getText()), account.getUsername());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    public void changeLightKnopOnAction(ActionEvent event)
+    {
+        Account account = hoofdschermController.getAccount();
+        Main.minLight = Integer.parseInt(changeLightField.getText());
+        try {
+            insertLight(Integer.parseInt(changeLightField.getText()), account.getUsername());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

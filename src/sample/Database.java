@@ -279,20 +279,24 @@ public class Database {
         Connection connection = DriverManager.getConnection(url, user, pass);
         Statement statement = connection.createStatement();
 
-        PreparedStatement ps= connection.prepareStatement("UPDATE `account` SET `username`= " + newUsername + " WHERE username = " + oldUsername);
+        PreparedStatement ps= connection.prepareStatement("UPDATE `account` SET `username`= ? WHERE username = ?");
+        ps.setString(1, newUsername);
+        ps.setString(2, oldUsername);
         ps.executeUpdate();
         connection.close();
     }
 
-//    public static void changePass(String hashedPassword) throws SQLException
-//    {
-//        Connection connection = DriverManager.getConnection(url, user, pass);
-//        Statement statement = connection.createStatement();
-//
-//        PreparedStatement ps= connection.prepareStatement("UPDATE `account` SET `password`= " . changePassField . " WHERE username= " . userID. "; );
-//                ps.setString(4, hashedPassword);
-//        ps.executeUpdate();
-//        connection.close();
-//    }
+    public static void changePass(String username, String newHashedPassword) throws SQLException
+    {
+        Connection connection = DriverManager.getConnection(url, user, pass);
+        Statement statement = connection.createStatement();
+
+
+        PreparedStatement ps= connection.prepareStatement("UPDATE `account` SET `password`= ? WHERE username = ?");
+        ps.setString(1, newHashedPassword);
+        ps.setString(2, username);
+        ps.executeUpdate();
+        connection.close();
+    }
 
 }

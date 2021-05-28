@@ -60,7 +60,6 @@ public class registerController implements Initializable {
     public void registerKnopOnAction(ActionEvent event) {
 
         if (!registerSetPassword.getText().equals("") && !registerConfirmPassword.getText().equals("") && !registerUsername.getText().equals("") && !registerAchternaam.getText().equals("") && !registerVoornaam.getText().equals("") && (registerSetPassword.getText().equals(registerConfirmPassword.getText()))) {
-            //(registerSetPassword.getText().equals(registerConfirmPassword.getText()))
             registerUser();
             confirmPasswordLabel.setText("");
             registerMsgLabel.setText("Lijkt goed te gaan");
@@ -95,9 +94,6 @@ public class registerController implements Initializable {
             registerMsgLabel.setText("Succesvolle registratie");
 
             Account account = Account.signUp(gebruikersnaam, password, voornaam, achternaam);
-
-            //gebruiker is ingelogd en moet nu naar hoofdscherm.
-
         } catch(Exception e) {
             e.printStackTrace();
             e.getCause();

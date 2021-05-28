@@ -97,9 +97,6 @@ public class hoofdschermController implements Initializable {
         Image prevImage = new Image(prevFile.toURI().toString());
         prevImageView.setImage(prevImage);
 
-//        File MainMenuImFile = new File("@../../Images/AvatarIcon.png");
-//        Image AvatarIconImage = new Image(MainMenuImFile.toURI().toString());
-//        avatarIconImageView.setImage(AvatarIconImage);
         accountOpties.setItems(list);
         accountOpties.setValue("Hoofdmenu");
 

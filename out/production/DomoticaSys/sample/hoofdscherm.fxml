@@ -109,7 +109,7 @@
                            </font>
                         </Label>
                         <ScrollBar layoutX="268.0" layoutY="47.0" orientation="VERTICAL" prefHeight="165.0" prefWidth="14.0" />
-                        <Button layoutX="189.0" layoutY="13.0" mnemonicParsing="false" text="Opslaan" />
+                        <Button fx:id="opslaan" layoutX="189.0" layoutY="13.0" mnemonicParsing="false" text="Opslaan"  onAction="#opslaan"/>
                         <CheckBox fx:id="lied1" layoutX="25.0" layoutY="76.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="212.0" text="Take On me - a-ha" textFill="WHITE"/>
                         <CheckBox fx:id="lied2" layoutX="25.0" layoutY="100.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="212.0" text="Super Mario Theme - Super Mario" textFill="WHITE"/>
                         <CheckBox fx:id="lied3" layoutX="25.0" layoutY="121.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="212.0" text="Mii Channel theme - Wii" textFill="WHITE"/>

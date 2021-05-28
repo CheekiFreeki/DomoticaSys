@@ -33,10 +33,9 @@ public class RaspberryPi
         catch (Exception exception)
         {
             jsonArray = "";
-            System.out.println("test");
         }
 
-        if (jsonArray=="")
+        if (jsonArray.equals(""))
         {
             return 0.0;
         }
